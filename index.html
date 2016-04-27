@@ -34,41 +34,19 @@
 <div class="container">
 
     <div class="page-header" id="banner">
-        <div class="row">
+        <div class="row" id="app">
             <div class="col-lg-8 col-md-7 col-sm-6">
                 <h1>ER Generator</h1>
                 <p class="lead">Generador de palabras mediante expresiones regulares</p>
-
                 <form action="">
                     <div class="form-group">
                         <label for="">Expresion Regular</label>
-                        <input type="text" id="er" value="(a|bb)*" class="form-control">
+                        <input type="text" v-model="er" v-on="keyup: update(this.er)" id="er" value="(a*b)c*" class="form-control">
                     </div>
                 </form>
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <span class="badge">14</span>
-                        Cras justo odio
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">2</span>
-                        Dapibus ac facilisis in
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">1</span>
-                        Morbi leo risus
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">14</span>
-                        Cras justo odio
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">2</span>
-                        Dapibus ac facilisis in
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">1</span>
-                        Morbi leo risus
+                    <li v-for="word in words" class="list-group-item">
+                        {{ word }}
                     </li>
                 </ul>
             </div>
@@ -97,7 +75,20 @@
 <script src="js/jquery-1.10.2.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/custom.js"></script>
+<script src="js/vue.min.js"></script>
 <script src="js/app.js"></script>
-
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            words: []
+        },
+        methods: {
+            update: function() {
+                this.words = procesar(er);
+            }
+        }
+    })
+</script>
 </body>
 </html>
