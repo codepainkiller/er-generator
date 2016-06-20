@@ -1,7 +1,7 @@
-var alphabet = ['a', 'b', 'c', 'd'];
+//var alphabet = ['a', 'b', 'c', 'd'];
 
-var er = '(a|bb*(a(b)))';//$('#er').val();
-console.log('ER validate is:', balancingGroupingSymbols(er));
+//var er = '(a|bb*(a(b)))';//$('#er').val();
+//console.log('ER validate is:', balancingGroupingSymbols(er));
 
 function separarExpresiones(str) {
     var arr = [];
@@ -164,8 +164,9 @@ function procesar(str) {
         matrix.push(generateWords(expresiones[i]))
     }
 
-    words = combineMatrix(matrix)
+    words = combineMatrix(matrix);
     words = removeDuplicates(words)
+    console.log(words);
     return words;
 }
 

@@ -41,13 +41,11 @@
                 <form action="">
                     <div class="form-group">
                         <label for="">Expresion Regular</label>
-                        <input type="text" v-model="er" v-on="keyup: update(this.er)" id="er" value="(a*b)c*" class="form-control">
+                        <input type="text" v-model="er" id="er" value="(a*b)c*" class="form-control">
                     </div>
                 </form>
-                <ul class="list-group">
-                    <li v-for="word in words" class="list-group-item">
-                        {{ word }}
-                    </li>
+                <ul id="lista" class="list-group">
+            
                 </ul>
             </div>
         </div>
@@ -78,17 +76,25 @@
 <script src="js/vue.min.js"></script>
 <script src="js/app.js"></script>
 <script type="text/javascript">
-    new Vue({
-        el: '#app',
-        data: {
-            words: []
-        },
-        methods: {
-            update: function() {
-                this.words = procesar(er);
+    
+    $(document).ready(function(){
+
+        $('#er').on('keyup', function() {
+            console.log('keyup');
+            var er = $('#er').val();
+            var words = procesar(er);
+            var html = '';
+
+            for (var i = 0; i < words.length; i++) {
+                html = html + '<li>' + words[i] + '</li>';
             }
-        }
-    })
+
+            $('#lista').html(html);
+        });
+        //alert($('#er').val());
+
+    });
+
 </script>
 </body>
 </html>
